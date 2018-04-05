@@ -33,7 +33,7 @@ module.exports = (request, reply) => {
     request.log(['debug'], `Running hook on repo: ${payload.repository.repo_name}`)
 
     const options = {
-      script: hooks[payload.repository.repo_name],
+      script: `${hooks[payload.repository.repo_name]} ${payload.push_data.tag}`,
       callbackUrl: payload.callback_url,
       callbackDisable: config.callbackDisable || false
     }
